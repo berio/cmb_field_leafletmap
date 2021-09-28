@@ -35,7 +35,3 @@ $cmb->add_field( array(
 #### Extra Parameters:
 
 * `split_values` Save the latitude/longitude values into two custom fields, they will be stored as `$id . '_latitude'` and `$id . '_longitude'`.
-
-## Screenshot
-
-![Image](screenshot-1.png?raw=true)
