@@ -1,12 +1,12 @@
 <?php
 /*
 Plugin Name: CMB2 Field Type: Leaflet Maps
-Plugin URI: https://github.com/mustardBees/cmb_field_map
-GitHub Plugin URI: https://github.com/mustardBees/cmb_field_map
-Description: Google Maps field type for CMB2.
+Plugin URI: https://github.com/berio/cmb_field_leafletmap
+GitHub Plugin URI: https://github.com/berio/cmb_field_leafletmap
+Description: Leaflet Maps field type for CMB2.
 Version: 2.2.0
-Author: Phil Wylie
-Author URI: https://www.philwylie.co.uk/
+Author: Berio Molina
+Author URI: https://beriomolina.com/
 License: GPLv2+
 */
 
