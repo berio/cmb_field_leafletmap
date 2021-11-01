@@ -36,7 +36,11 @@ class LAULO_CMB2_Field_Leaflet_Maps {
 
 		$this->setup_admin_scripts( );
 
-		echo '<input type="text" class="large-text pw-map-search" id="' . $field->args( 'id' ) . '" />';
+		echo '<input type="text" class="large-text pw-map-search search-coordinates-input" id="' . $field->args( 'id' ) . '" />';
+		echo '<p class="cmb2-metabox-description">';
+		echo __('Write coordinates separated by comma, like: 42.599622, -7.726531', '');
+		echo '</p>';
+		echo '<p><button class="button" type="button" id="search_coordinates">Zoom to coordinates</button></p>';
 
 //		echo '<div class="pw-map"></div>';
 		echo '<div id="laulo-map"></div>';

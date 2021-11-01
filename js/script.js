@@ -25,5 +25,13 @@
 		$( '.pw-map-longitude' ).val( position.lng );
 	  });
 
+		$('#search_coordinates').click(function(){
+//			console.log('ola');
+			var coordinates = $('.search-coordinates-input').val();
+			var coordinates_split = coordinates.split(',');
+
+			leafletMap.panTo([coordinates_split[0], coordinates_split[1]]);
+			marker.setLatLng(new L.LatLng(coordinates_split[0], coordinates_split[1]),{draggable:'true'})
+		});
 
 })( jQuery );
