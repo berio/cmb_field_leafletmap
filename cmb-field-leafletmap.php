@@ -26,7 +26,7 @@ class LAULO_CMB2_Field_Leaflet_Maps {
 	public function __construct() {
 		add_filter( 'cmb2_render_pw_map', array( $this, 'render_pw_map' ), 10, 5 );
 		add_filter( 'cmb2_sanitize_pw_map', array( $this, 'sanitize_pw_map' ), 10, 4 );
-		add_filter( 'pw_google_api_key', array( $this, 'google_api_key_constant' ) );
+    add_action( 'wp_enqueue_scripts', array($this, 'setup_public_scripts') );
 	}
 
 	/**
@@ -81,7 +81,7 @@ class LAULO_CMB2_Field_Leaflet_Maps {
 	}
 
 	/**
-	 * Enqueue scripts and styles.
+	 * Enqueue admin scripts and styles.
 	 */
 	public function setup_admin_scripts() {
 		wp_register_script( 'laulo-leaflet-js', plugins_url( 'js/leaflet.js', __FILE__ ), array(), self::VERSION );
@@ -91,20 +91,12 @@ class LAULO_CMB2_Field_Leaflet_Maps {
 	}
 
 	/**
-	 * Default filter to return a Google API key constant if defined.
+	 * Enqueue public scripts and styles.
 	 */
-	public function google_api_key_constant( $google_api_key = null ) {
-
-		// Allow the field's 'api_key' parameter or a custom hook to take precedence.
-		if ( ! empty( $google_api_key ) ) {
-			return $google_api_key;
-		}
-
-		if ( defined( 'PW_GOOGLE_API_KEY' ) ) {
-			$google_api_key = PW_GOOGLE_API_KEY;
-		}
-
-		return $google_api_key;
+	public function setup_public_scripts() {
+		wp_register_script( 'laulo-leaflet-js', plugins_url( 'js/leaflet.js', __FILE__ ), array(), self::VERSION, false );
+    wp_enqueue_script('laulo-leaflet-js');
+		wp_enqueue_style( 'laulo-leaflet-css', plugins_url( 'css/leaflet.css', __FILE__ ), array(), self::VERSION );
 	}
 }
 $laulo_cmb2_field_leaflet_maps = new LAULO_CMB2_Field_Leaflet_Maps();

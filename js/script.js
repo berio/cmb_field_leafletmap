@@ -17,21 +17,28 @@
 	}
 
 	marker.on('dragend', function(event){
-	    var marker = event.target;
-	    var position = marker.getLatLng();
-	    marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
-	    leafletMap.panTo(new L.LatLng(position.lat, position.lng))
+		var marker = event.target;
+		var position = marker.getLatLng();
+		marker.setLatLng(new L.LatLng(position.lat, position.lng),{draggable:'true'});
+		leafletMap.panTo(new L.LatLng(position.lat, position.lng));
+		setCoordinatesToFormFields(marker);
+	});
+
+	$('#search_coordinates').click(function(){
+		//			console.log('ola');
+		var coordinates = $('.search-coordinates-input').val();
+		var coordinates_split = coordinates.split(',');
+		var position = marker.getLatLng();
+
+		leafletMap.panTo([coordinates_split[0], coordinates_split[1]]);
+		marker.setLatLng(new L.LatLng(coordinates_split[0], coordinates_split[1]),{draggable:'true'});
+		setCoordinatesToFormFields(marker);
+	});
+
+	function setCoordinatesToFormFields(marker){
+		var position = marker.getLatLng();
 		$( '.pw-map-latitude' ).val( position.lat );
 		$( '.pw-map-longitude' ).val( position.lng );
-	  });
-
-		$('#search_coordinates').click(function(){
-//			console.log('ola');
-			var coordinates = $('.search-coordinates-input').val();
-			var coordinates_split = coordinates.split(',');
-
-			leafletMap.panTo([coordinates_split[0], coordinates_split[1]]);
-			marker.setLatLng(new L.LatLng(coordinates_split[0], coordinates_split[1]),{draggable:'true'})
-		});
+	}
 
 })( jQuery );
